@@ -1,0 +1,360 @@
+User:
+# ROLE: GLOBAL MACROECONOMIC GOVERNOR
+
+You are the autonomous controller of a linked three-economy system (EUR, USD, YEN). Your mandate is the stabilization of the Eurozone (EUR).
+
+
+
+#MISSION ACCOMPLISHED STATUS
+
+You must bring the EUR indicators into the target intervals and maintain them for two consecutive weeks. Once this stability is reached, the optimization is considered complete and the mission is accomplished.
+
+
+
+# USE OF CODE
+
+You are encouraged to use code or internal mathematical calculation to determine the exact magnitude of your actions. Treat the target intervals as goal states and the lever logic as mathematical functions. Solve for 'n' (number of pulls) to minimize the distance between current state and target.
+
+
+
+# SYSTEM LOGIC & STACKABLE LEVERS
+
+1. Linkages: Economies are connected via Traders (Goods Arbitrage) and Credit Banks (Currency Arbitrage).
+
+2. Action Magnitude: You may pull any lever MULTIPLE TIMES in a single 8-week block to achieve the desired magnitude of change. 
+
+3. Levers (per economy: EUR, USD, YEN):
+
+   - GROWTH: Each pull increases local productivity by 5%. (Effect = $1.05^n$ for $n$ pulls).
+
+   - CONTRACTION: Each pull decreases local productivity by 5%. (Effect = $0.95^n$ for $n$ pulls).
+
+   - DEFICIT_SPENDING: Each pull injects 5,000 currency units INTO EVERY BANK ACCOUNT in the currency zone (excluding the state's account). TOTAL INJECTION = 5,000 × (Total Accounts in Zone). Directly increases M1 and creates state debt via bank overdraft.
+
+   - POPULATION: Each pull adds 100 household agents. (Effect = $100 \times n$). CHARACTERISTICS: These households start with ZERO wealth (empty bank accounts) but FULL labor capacity. ECONOMIC IMPACT: They immediately increase labor supply (downward pressure on wages) but require employment before they can contribute to market demand.
+
+
+
+# DATA PROTOCOL
+
+You will receive 8-week aggregates of CSV logs. Perform autonomous feature selection to identify the "velocity" of trends before deciding on the magnitude of your intervention.
+
+
+
+# TASK: MONTHLY POLICY DECISION (Tree-of-Thoughts)
+
+Explore multiple 8-week policy branches to find the most stable path.
+
+
+
+# TARGET GOALS (STABILIZE EUR):
+
+Price Index [10.0–15.0] AND Credit Utilization [0.60–0.70]
+
+
+
+# INSTRUCTIONS:
+
+1. PROPOSE 3 BRANCHES: Generate three distinct 8-week strategies (e.g., Aggressive Stimulation, Targeted Contraction, or Cross-Border Arbitrage Trigger).
+
+2. EVALUATE CONFLICTS: For each branch, evaluate the "Conflict of Mandates." How does an action to fix Credit Utilization affect the Price Index?
+
+3. LOOK-AHEAD: Predict the state of the EUR economy at the end of Month 3 and 4 for each branch, accounting for the feedback loops of Traders and Credit Banks.
+
+4. RANK & SELECTION: Select the branch with the highest probability of hitting the Pareto-optimal target.
+
+5. FINAL ACTION: Format as: ACTIONS: [ZONE_LEVER_NAME, ...]
+
+Example: ACTIONS: [EUR_CONTRACTION x1, USD_GROWTH x2]
+
+
+LLM:
+To stabilize the Eurozone (EUR), we must address the significant overshoot in both the Price Index (50.27 vs. target 10.0–15.0) and Credit Utilization (0.86 vs. target 0.60–0.70). The velocity of the Price Index is currently positive (rising from 32 to 50 over the last month), necessitating aggressive intervention.
+
+Tree-of-Thoughts Analysis
+Branch 1: Global Productivity Shock (Supply-Side Alignment)
+Strategy: Apply massive GROWTH pulls to EUR to crash the Price Index through productivity gains, while simultaneously applying GROWTH to USD and YEN to prevent arbitrage leakage via Traders.
+
+Magnitude Calculation: Solve 50.27×(0.9523) 
+n
+ =12.5 (inverse of 1.05 
+n
+ ). For EUR, n≈28. To align neighbors and prevent Traders from draining EUR inventory, USD needs ∼21 pulls and YEN needs ∼22.
+
+Conflict: Increasing productivity lowers the nominal cost of production, which reduces the credit required for working capital (lowering CU). However, rapid expansion might briefly strain credit limits.
+
+Look-Ahead: Month 3: EUR PI ~24.0, CU ~0.78. Month 4: EUR PI ~13.2, CU ~0.66.
+
+Branch 2: Demographic Expansion & Moderate Growth
+Strategy: Combine POPULATION x15 with GROWTH x15.
+
+Evaluation: Adding 1,500 households creates a massive labor surplus, crashing wages and thus prices. However, these 1,500 households start with zero wealth and will immediately maximize their credit usage for survival (Food/Clothing), causing a massive spike in Credit Utilization that would violate the 0.70 ceiling for several weeks.
+
+Look-Ahead: Month 3: PI ~35.0, CU ~0.98 (Failure).
+
+Branch 3: Aggressive Contraction (Demand Side)
+Strategy: EUR_CONTRACTION x20.
+
+Evaluation: In this system, contraction reduces local productivity. Reducing supply while money supply remains constant (or velocity stays high) will drive the Price Index even higher, worsening the current inflation.
+
+Look-Ahead: Month 3: PI ~75.0 (Failure).
+
+Rank & Selection
+Branch 1 is the only viable path to hitting the Pareto-optimal target. By using the 1.05 
+n
+  growth function at a magnitude of n=28, we mathematically offset the 4x overshoot in the Price Index. Including USD and YEN in the growth strategy ensures that EUR goods do not become an arbitrage target for global Traders, which would otherwise drive EUR prices back up. A small population boost (x5) is added to EUR to ensure the labor supply can support the 28x productivity multiplier without wage-push inflation.
+
+Final Policy Decision: The magnitude of the GROWTH lever is set to neutralize the Price Index overshoot while the POPULATION lever provides the necessary labor slack to maintain low production costs.
+
+ACTIONS: [EUR_GROWTH x28, USD_GROWTH x21, YEN_GROWTH x22, EUR_POPULATION x5]
+
+
+User:
+Analyze the results of your previous actions. What is your next set of actions for the coming 8 week block to achieve the targets?
+
+Note: If targets were hit in the 8 weeks, focus on maintaining them this month to trigger the Mission Accomplished status (2-week stability rule).
+
+
+LLM:
+The previous 8-week block showed significant progress. The Price Index (PI) in the Eurozone dropped from 44.9 to 19.5, and Credit Utilization (CU) decreased from 0.98 to 0.80. However, both indicators remain above their target intervals (PI: 10.0–15.0; CU: 0.60–0.70). Notably, the velocity of the PI decline is decelerating, and the CU experienced a slight upward correction in the final week (0.73 to 0.80), likely due to the consumption needs of the 500 households added in the last cycle.
+
+Tree-of-Thoughts Analysis
+Branch 1: Balanced Efficiency Drive (Selected)
+Strategy: Apply GROWTH x12 to EUR to push the Price Index into the target range and improve industrial credit efficiency. Apply GROWTH x10 to USD and YEN to keep global prices aligned and prevent Traders from draining EUR inventories.
+
+Evaluation: 19.5÷(1.05 
+12
+ )≈10.8, which is perfectly positioned within the target [10.0–15.0]. By not adding further population, we allow the current workforce (2,591 agents) to accumulate wealth, reducing their reliance on credit and lowering CU toward the 0.65 range.
+
+Look-Ahead: Month 3: EUR PI ~11.5, CU ~0.68. Month 4: Maintenance of these levels.
+
+Branch 2: Aggressive Labor Expansion
+Strategy: EUR_POPULATION x10 + EUR_GROWTH x15.
+
+Conflict: While this would crash the Price Index through labor surplus, the 1,000 new agents would start with zero wealth. Their immediate survival borrowing would cause Credit Utilization to spike back above 0.90, failing the CU mandate.
+
+Look-Ahead: Month 3: PI ~9.0 (Overshoot), CU ~0.95 (Fail).
+
+Branch 3: Monetary Injection (Deficit Spending)
+Strategy: EUR_DEFICIT_SPENDING x5 + EUR_GROWTH x20.
+
+Conflict: Injecting cash into bank accounts would help lower CU by providing households with non-credit liquidity. However, this increases M1, which is counter-productive to the goal of lowering the Price Index to 10.0.
+
+Look-Ahead: Month 3: PI ~22.0 (Fail), CU ~0.62.
+
+Rank & Selection
+Branch 1 is the Pareto-optimal path. It uses mathematical growth to reach the PI target while avoiding the "zero-wealth credit spike" associated with new population growth. Aligning USD and YEN ensures EUR does not become an export-only economy, which would cause domestic shortages and price spikes.
+
+ACTIONS: [EUR_GROWTH x12, USD_GROWTH x10, YEN_GROWTH x10]
+
+
+User:
+Analyze the results of your previous actions. What is your next set of actions for the coming 8 week block to achieve the targets?
+
+Note: If targets were hit in the 8 weeks, focus on maintaining them this month to trigger the Mission Accomplished status (2-week stability rule).
+
+
+LLM:
+The analysis of the last 8-week block indicates that the Eurozone (EUR) has entered a state of inventory-driven deflation. While the Price Index (11.62) is currently within the target range [10.0–15.0], it has a strong negative velocity of -1.6 per week. Without intervention, it will fall below the floor in the first week of the next cycle. Furthermore, Credit Utilization (0.71) remains stubbornly above the [0.60–0.70] target.
+
+Data inspection of the industries shows that inventory levels for key commodities (Coal, Wheat, Iron) are reaching extreme levels (e.g., Wheat at 994k units). Factories are credit-constrained because their wealth is trapped in unsold goods.
+
+Tree-of-Thoughts Analysis
+Branch 1: Structural Inventory Clearance (Selected)
+Strategy: Apply EUR_CONTRACTION x15. This mathematically offsets the downward price velocity (11.62÷0.95 
+15
+ ≈25.3, which, after accounting for the -12.8 point slide over 8 weeks, settles the PI at ~12.5).
+
+CU Impact: By restricting new production, factories are forced to meet demand by selling existing inventory. This converts trapped stock into liquid cash, allowing factories to pay down debts and dropping Credit Utilization into the target range.
+
+Global Alignment: Apply USD_CONTRACTION x15 and YEN_CONTRACTION x12 to push global prices to ~25.0. This ensures EUR remains the most competitive zone (cheapest goods), attracting global Traders to accelerate the clearing of EUR inventory.
+
+Look-Ahead: Month 3: EUR PI ~18.0, CU ~0.68. Month 4: EUR PI ~13.5, CU ~0.64.
+
+Branch 2: Mild Adjustment
+Strategy: EUR_CONTRACTION x5.
+
+Evaluation: Only raises the PI baseline to ~15.0. After 8 weeks of velocity (-12.8), the PI would crash to ~2.2, failing the mandate.
+
+Look-Ahead: Failure on PI stability.
+
+Branch 3: Liquidity Injection
+Strategy: EUR_DEFICIT_SPENDING x1.
+
+Evaluation: A single pull injects ~13.4 million units. Given that the current M1 is only ~649k, this would cause catastrophic hyperinflation and a total failure of the Price Index mandate.
+
+Look-Ahead: PI > 100.0 (Failure).
+
+Rank & Selection
+Branch 1 is selected as the only path that mathematically addresses the current price velocity while providing a structural mechanism (inventory liquidation) to lower Credit Utilization. By coordinating the contraction with the USD and YEN zones, we utilize the global linkage of Traders to support the EUR economy.
+
+Final Action: The magnitudes are calculated to center the Price Index at 12.5 by the end of the 8-week cycle, accounting for the -1.6/week momentum.
+
+ACTIONS: [EUR_CONTRACTION x15, USD_CONTRACTION x15, YEN_CONTRACTION x12]
+
+
+User:
+Analyze the results of your previous actions. What is your next set of actions for the coming 8 week block to achieve the targets?
+
+Note: If targets were hit in the 8 weeks, focus on maintaining them this month to trigger the Mission Accomplished status (2-week stability rule).
+
+
+LLM:
+The analysis of the latest 8-week block reveals that the aggressive contraction strategy from the previous period overcorrected the economy. The Eurozone (EUR) has entered a state of under-utilization and mild deflation.
+
+Current State vs. Targets:
+
+Price Index (PI): 8.93 (Target: 10.0–15.0) — Below Target.
+
+Credit Utilization (CU): 0.388 (Target: 0.60–0.70) — Below Target.
+
+Inventory: Wheat inventories cleared significantly (994k to 73k), but low demand is keeping prices suppressed.
+
+The velocity of both indicators is nearly flat, suggesting the economy is stuck in a low-activity trap. We need to stimulate demand and increase the use of credit.
+
+Tree-of-Thoughts Analysis
+Branch 1: Demographic Stimulus & Moderate Expansion (Selected)
+Strategy: Apply EUR_POPULATION x5 and EUR_GROWTH x5.
+
+Mechanism: Adding 500 agents to the current 1,165 households (a 43% increase) creates immediate demand for essentials. Since these agents start with zero wealth, they must utilize credit for initial consumption, which will drive the CU (currently 0.388) toward the 0.60–0.70 target. The increased demand will pull the Price Index above the 10.0 floor. GROWTH x5 ensures that productivity rises sufficiently to prevent a hyper-inflationary spike.
+
+Look-Ahead: Month 3: EUR PI ~11.8, CU ~0.64. Month 4: Targets maintained for "Mission Accomplished" status.
+
+Branch 2: Monetary Injection (Deficit Spending)
+Strategy: EUR_DEFICIT_SPENDING x1.
+
+Conflict: One pull injects 5,000 units per account. With 1,265 accounts, this adds ~6.3 million units to an M1 of only 241k. This 26x increase in the money supply would cause immediate hyperinflation and a total violation of the PI mandate.
+
+Look-Ahead: PI > 100.0 (Failure).
+
+Branch 3: Supply-Side Contraction
+Strategy: EUR_CONTRACTION x3.
+
+Evaluation: While reducing productivity theoretically raises prices, the previous cycle proved that contraction in this specific system state (low demand) triggers a deflationary spiral and suppresses credit usage further.
+
+Look-Ahead: PI ~8.0, CU ~0.35 (Failure).
+
+Rank & Selection
+Branch 1 is the Pareto-optimal choice. It uses population growth to structurally increase both the consumer base and credit demand, while the moderate growth lever prevents supply bottlenecks. I am also adding minor growth to USD and YEN to stabilize them near their current successful levels (PI ~10.5).
+
+ACTIONS: [EUR_POPULATION x5, EUR_GROWTH x5, USD_GROWTH x2, YEN_GROWTH x2]
+
+
+User:
+Analyze the results of your previous actions. What is your next set of actions for the coming 8 week block to achieve the targets?
+
+Note: If targets were hit in the 8 weeks, focus on maintaining them this month to trigger the Mission Accomplished status (2-week stability rule).
+
+
+LLM:
+The analysis of the previous 8-week block indicates that the stimulus (Population x5 + Growth x5) was insufficient to overcome the deflationary momentum. While Credit Utilization (CU) initially spiked, it has since settled at 0.44, well below the target floor of 0.60. The Price Index (PI) remains stagnant at 8.52, below the target floor of 10.0.
+
+The velocity of the Price Index is currently flat to slightly negative, and the economy is stuck in a low-activity equilibrium. The productivity gains from the "Growth" lever effectively neutralized the price pressure from the new population, preventing the Price Index from rising.
+
+Tree-of-Thoughts Analysis
+Branch 1: Aggressive Domestic Inflation (Selected)
+Strategy: Apply EUR_CONTRACTION x6 and EUR_POPULATION x8.
+
+Mechanism: CONTRACTION reduces productivity (0.95 
+6
+ ), which mathematically forces the Price Index upward (8.52÷0.735≈11.59). Adding 800 households (who start with zero wealth) will create a structural reliance on credit for initial survival consumption, pushing the CU from 0.44 into the 0.60–0.70 range.
+
+Evaluation: This solves both mandates by restricting supply and expanding credit-dependent demand.
+
+Look-Ahead: Month 3: EUR PI ~11.6, CU ~0.68. Month 4: Stabilization at target.
+
+Branch 2: Global Parity Adjustment (Cross-Border Arbitrage Trigger)
+Strategy: Apply Branch 1 plus USD_CONTRACTION x8 and YEN_CONTRACTION x6.
+
+Conflict: If EUR prices rise while USD/YEN prices remain at ~7.0–8.0, global Traders will dump cheap foreign goods into the Eurozone, dragging the EUR Price Index back down. By contracting the link economies, we raise the global price floor to ~11.0, protecting the EUR stabilization.
+
+Look-Ahead: Month 3: Global PI parity ~11.5. (Selected as the safest path for EUR).
+
+Branch 3: Monetary Injection (Deficit Spending)
+Strategy: EUR_DEFICIT_SPENDING x1.
+
+Evaluation: A single pull injects 5,000 units per account. With approximately 1,500 accounts, this is a ~7.5M unit injection into an M1 of only 480k. This would cause hyperinflation (>50.0), violating the 15.0 ceiling immediately.
+
+Look-Ahead: Failure on PI mandate.
+
+Rank & Selection
+Branch 2 is selected. It provides the necessary mathematical lift for the Price Index and Credit Utilization in EUR while ensuring the external linkages (Traders) do not sabotage the recovery through deflationary arbitrage.
+
+Final Actions:
+
+EUR: 6 pulls of Contraction to hit PI≈11.5. 8 pulls of Population to hit CU≈0.68.
+
+USD/YEN: Aligned contractions to prevent arbitrage leakage.
+
+ACTIONS: [EUR_CONTRACTION x6, EUR_POPULATION x8, USD_CONTRACTION x8, YEN_CONTRACTION x6]
+
+
+User:
+Analyze the results of your previous actions. What is your next set of actions for the coming 8 week block to achieve the targets?
+
+Note: If targets were hit in the 8 weeks, focus on maintaining them this month to trigger the Mission Accomplished status (2-week stability rule).
+
+
+LLM:
+The analysis of the last 8-week cycle indicates that the Eurozone (EUR) has successfully entered the target stability zone.
+
+Performance Summary (Last 4 Weeks):
+Price Index (PI): 10.46 → 12.42 → 13.35 → 13.50. (Current: 13.50, Target: 10.0–15.0).
+
+Credit Utilization (CU): 0.62 → 0.68 → 0.70 → 0.67. (Current: 0.67, Target: 0.60–0.70).
+
+The previous intervention effectively raised the price level and pushed credit demand into the optimal range. The velocity of change has decelerated significantly (PI velocity dropped from +1.96 to +0.15), suggesting the system has reached a stable equilibrium.
+
+Mission Status
+The targets were hit in the final week (2002-01-27). According to the 2-week stability rule, maintaining these indicators through the first week of the next cycle will result in "Mission Accomplished" status.
+
+Tree-of-Thoughts Analysis
+Branch 1: Neutral Maintenance (Selected): By applying minimal intervention (GROWTH x1 across all zones), we maintain productivity momentum without disrupting the price equilibrium. This allows the system's natural feedback loops to settle the indicators exactly where they are.
+
+Branch 2: Safety Buffering: Applying a small CONTRACTION to prevent prices from falling. However, current PI velocity is positive (+0.15), making this unnecessary and risking an overshoot of the 15.0 ceiling.
+
+Branch 3: Aggressive Growth: Using GROWTH x5 to improve efficiency. This would likely drive the Price Index back toward the 10.0 floor, potentially restarting the deflationary cycle we just exited.
+
+Final Selection
+I have chosen Branch 1. The priority is to trigger the 2-week stability rule. The current state is mathematically optimal. Minor global growth is applied to ensure the linkage with USD and YEN remains balanced, preventing arbitrage traders from creating domestic price volatility in the Eurozone.
+
+ACTIONS: [EUR_GROWTH x1, USD_GROWTH x1, YEN_GROWTH x1]
+
+
+User:
+Analyze the results of your previous actions. What is your next set of actions for the coming 8 week block to achieve the targets?
+
+Note: If targets were hit in the 8 weeks, focus on maintaining them this month to trigger the Mission Accomplished status (2-week stability rule).
+
+
+LLM:
+The analysis of the last 8-week block indicates that while the Price Index (12.83) is perfectly centered within the target range [10.0–15.0], Credit Utilization (0.59) has dipped just below the required floor of 0.60. We reached the target in the second-to-last week (0.61) but failed to maintain it for the required 2-week stability period.
+
+Tree-of-Thoughts Analysis
+Branch 1: Targeted Demand Nudge (Selected)
+Strategy: Apply EUR_POPULATION x2 and EUR_CONTRACTION x1.
+
+Mechanism: Adding 200 household agents (Population x2) provides a structural nudge to the Credit Utilization rate. Since these agents start with zero wealth, their initial consumption of essentials (Food, Clothing) must be financed through credit, which will lift the CU from 0.59 into the 0.63–0.66 range. The single pull of CONTRACTION (0.95 
+1
+ ) is used to offset the slight downward velocity in prices (-0.05/week), ensuring the Price Index stays stable near 13.0.
+
+Look-Ahead: Month 3: EUR PI ~13.2, CU ~0.65. This is expected to trigger the "Mission Accomplished" status by hitting the targets for 2+ consecutive weeks.
+
+Branch 2: Supply-Side Restriction
+Strategy: Apply EUR_CONTRACTION x4.
+
+Evaluation: Reducing productivity by ~20% would force prices up and potentially increase credit usage for industrial survival. However, without a demand-side trigger, this risks increasing the Price Index beyond the 15.0 ceiling while the CU remains fragile.
+
+Look-Ahead: Month 3: PI ~15.8 (Overshoot), CU ~0.62.
+
+Branch 3: Maintenance Repeat
+Strategy: EUR_GROWTH x1.
+
+Evaluation: The previous cycle used this maintenance lever, but the resulting CU was 0.59. Repeating this action would likely result in another 8 weeks of hovering just below the mission success threshold.
+
+Look-Ahead: Mission Failure (Target floor violation).
+
+Rank & Selection
+Branch 1 is the Pareto-optimal strategy. It introduces the exact amount of credit-dependent demand needed to clear the 0.60 floor without causing a significant inflationary spike.
+
+ACTIONS: [EUR_POPULATION x2, EUR_CONTRACTION x1]
