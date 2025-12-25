@@ -18,3 +18,8 @@ The study investigates Gemini (Thinking Mode) acting as a macroeconomic governor
 
 ## Methodology Note
 These experiments were conducted using the Gemini web interface. The `logs/` folder provides the exact prompt chains and resulting outputs used to generate the data found in the `data/` folder.
+
+## Simulator Reference
+This study utilizes the **Multi-Agent Non-Stochastic Economic Simulator** originally developed by Uwe Wolffgang.
+* **Source Code:** [https://github.com/uwol/computational-economy](https://github.com/uwol/computational-economy)
+* **Citation:** Wolffgang, U. (2015). *A Multi-Agent Non-Stochastic Economic Simulator* [Source Code]. GitHub.
